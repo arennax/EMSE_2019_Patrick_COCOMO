@@ -1,10 +1,10 @@
-\documentclass[sigconf,review]{acmart}
+\documentclass[sigconf,review,anonymous]{acmart}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{amsmath}
 \usepackage{rotate}
 \usepackage{listings}
-\usepackage{pythonhighlight}
+\usepackage{pythonhighlight }
 \usepackage{colortbl}
 \usepackage{arydshln}
 \usepackage{bigdelim}
@@ -222,9 +222,8 @@ That is, ROME is the best we can currently offer for very old and very new data.
 ROME is a simplification of a general hyperparameter optimization suite called OIL. OIL was a general 
 workbench for exploring optimizers that auto-tuned the control parameters of an effort estimator.
 As such it was suffered from code bloat since it included numerous optimizers and learnerss. 
-When OIL ran, sometimes it was very slow to terminate. Even for data sets that were very
-small (just a few dozen rows), OIL sometimes tool XXXX to terminate since it was experimenting with a large
-number of estimation methods. 
+When OIL ran, sometimes it was very slow to terminate. Even for data sets that were relatively
+small (just a few dozen rows), OIL sometimes took hours to terminate since it was experimenting with a large number of estimation methods. 
 
 Apart working its performance on old and new data sets
 
