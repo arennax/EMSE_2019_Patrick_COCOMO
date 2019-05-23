@@ -1,4 +1,6 @@
-\pdfoutput=1
+\documentclass[sigconf,twocolumn,review]{acmart} 
+\bibliographystyle{ACM-Reference-Format}
+%\pdfoutput=1
 %%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % This is a general template file for the LaTeX package SVJour3
@@ -86,6 +88,7 @@
 \newcommand{\eq}[1]{Equation~\ref{eq:#1}}
 \newcommand{\tion}[1]{\S\ref{sect:#1}}
 
+\usepackage[table,xcdraw]{xcolor}
 
 %  \usepackage[usenames]{color}
 \usepackage{url}
@@ -132,7 +135,7 @@ shadow=false
 {\begin{myshadowbox}\textbf{\textit{\underline{Lesson#1:}}} #2}{ 
 \end{myshadowbox}}
     
-\newcommand{\nm}[1]{\hline\multicolumn{1}{c}{\cellcolor{black} { {\bf \textcolor{white}{#1}}}}}
+\newcommand{\nm}[1]{\hline\multicolumn{2}{c}{\cellcolor{black} { {\bf \textcolor{white}{#1}}}}}
 
 \lstset{
     language=Python,
@@ -173,35 +176,38 @@ shadow=false
 % \journalname{myjournal}
 %
 \begin{document}
+\pagestyle{plain}
 
-\title{Negative Results about Effort Estimation
+\title{Reversing Prior Negative Results about Effort Estimation
 }
 % \subtitle{Do you have a subtitle?\\ If so, write it here}
 
 %\titlerunning{Short form of title}        % if too long for running head
 
 
-\newcommand{\RED}{\color{red}}
-\newcommand{\BLACK}{\color{black}}
+% \newcommand{\RED}{\color{red}}
+% \newcommand{\BLACK}{\color{black}}
 
 
-\author{Tianpei Xia         \and
-        Tim Menzies         
-}
+% \author{Tianpei Xia         \and
+%         Tim Menzies         
+% }
 
-%\authorrunning{Short form of author list} % if too long for running head
+% %\authorrunning{Short form of author list} % if too long for running head
 
-\institute{Tianpei Xia,
-Tim Menzies\at
-              Department of Computer Science, North Carolina State University, Raleigh, NC, USA \\
-              Email: txia4@ncsu.edu,  timm@ieee.org 
-}
+% \institute{Tianpei Xia,
+% Tim Menzies\at
+%               Department of Computer Science, North Carolina State University, Raleigh, NC, USA \\
+%               Email: txia4@ncsu.edu,  timm@ieee.org 
+% }
 
-\date{the date of receipt and acceptance should be inserted later}
-% The correct dates will be entered by the editor
+% \date{the date of receipt and acceptance should be inserted later}
+% % The correct dates will be entered by the editor
 
 
-\maketitle
+% \maketitle
+
+
 
 \begin{abstract}
 Software effort estimation researchers keep proposing new approaches and  demonstrating the improvements of their proposed methods by comparing with supposedly state-of-the-art baseline methods. However, very few studies compared with approaches that are classic yet simple, on different type of projects (e.g. Waterfall, Agile). As Menzies et al. mentioned~\cite{MenziesNeg:2017}, with specific attributes, old methods (e.g. COCOMO-II) can achieve better, if not the best, performance results. Therefore, for any newly proposed software estimation method, it is necessary to check if it has better estimates than older ones.
@@ -220,7 +226,31 @@ We offer this ``ROME'' framework as a comprehensive baseline method to software 
 \section{Introduction}
 \label{intro}
 
-This paper is about a compatibility exploration and validation for ``ROME'', a hyperparameter tuning based approach of software effort estimation, which can be a new baseline method for software effort estimation research on effort dataset from both traditional waterfall style projects (e.g. COCOMO Projects) and new open source agile style projects (e.g. GitHub Projects).
+
+This paper  ``ROME'', a hyperparameter tuning based approach for software effort estimation. We recommend ROME since:
+\bi
+\item
+ROME reverses
+a prior negative result about effort estimation. In 2017, Menzies et al. observed that  a decades-old method
+called COCOMO was out-performing the supposed recent state-of-the-art in effort estimation. In this paper we show that,
+finally, we have something that can defeat COCOMO.
+\item
+ROME worked best not just for decades-old waterfall-style COCOMO data, but also when applied to current agile-style daat sets from Github (for definitions
+of ``waterfall'' and ``agile'', see later in this paper.
+That is, ROME is the best we can currently offer for very old and very new data.
+\ei
+ROME is a simplification of a general hyperparameter optimization suite called OIL. OIL was a general 
+workbench for exploring optimizers that auto-tuned the control parameters of an effort estimator.
+As such it was suffered from code bloat since it included numerous optimizers and learnerss. 
+When OIL ran, sometimes it was very slow to terminate. Even for data sets that were very
+small (just a few dozen rows), OIL sometimes tool XXXX to terminate since it was experimenting with a large
+number of estimation methods. 
+
+Apart working its performance on old and new data sets
+
+To the best of our knowledge, this
+is only current algorithm with demonstrates superior results for data from both (a)~traditional waterfall style projects;
+and (b) newer  open source agile style projects (from Github).
 
 % It is surprising that despite decades' developing of effort estimating techniques, COCOMO still achieves best performance among those old datasets. If a method cannot outperform COCOMO with the old datasets, it will be less persuade 
 
@@ -244,7 +274,7 @@ In Agile software development, developers use third-party packages, web services
 
 
 \begin{figure}
-\centerline{\includegraphics[width=1\textwidth]{water_grey.pdf}}
+\centerline{\includegraphics[width=0.5\textwidth]{water_grey.pdf}}
 \caption{Waterfall vs. Agile in Software Development}    
 \label{fig:water}
 \end{figure}
@@ -448,13 +478,49 @@ Algorithm-based effort estimation methods have been widely explored in the past 
 % \end{figure}
 
 
-\begin{table}
-\centerline{\includegraphics[width=1\textwidth]{cocomo_para.pdf}}
-\caption{COCOMO-II attributes.}
-\label{tbl:cparems}
-\vspace{-0.6cm}
-\end{table}
+% \begin{table*}
+% \centerline{\includegraphics[width=.7\textwidth]{cocomo_para.pdf}}
+% \caption{COCOMO-II attributes.}
+% \label{tbl:cparems}
+% \vspace{-0.6cm}
+% \end{table*}
 
+\begin{table*}[!htbp]
+\centering
+\caption{COCOMO-II attributes.}
+\begin{tabular}{c|l|l|l|l}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+ & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Definition}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Low End \{1, 2\}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Medium \{3, 4\}}} & \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}\textbf{High End \{5, 6\}}} \\ \hline
+\multicolumn{5}{l}{\textbf{Scale factors}} \\ \hline
+flex & development flexibility & \begin{tabular}[c]{@{}l@{}}development process\\ rigorously defined\end{tabular} & \begin{tabular}[c]{@{}l@{}}some guidelines, which\\ can be relaxed\end{tabular} & only general goals defined \\ \hline
+pmat & process maturity & CMM level 1 & CMM level 3 & CMM level 5 \\ \hline
+prec & precedentedness & \begin{tabular}[c]{@{}l@{}}we have never built this \\ kind of software before\end{tabular} & somewhat new & thoroughly familiar \\ \hline
+resl & architecture or risk resolution & \begin{tabular}[c]{@{}l@{}}few interfaces defined \\ or few risks eliminated\end{tabular} & \begin{tabular}[c]{@{}l@{}}most interfaces defined \\ or most risks eliminated\end{tabular} & \begin{tabular}[c]{@{}l@{}}all interfaces defined or all \\ risks eliminated\end{tabular} \\ \hline
+team & team cohesion & very difficult interactions & basically co-operative & seamless interactions \\ \hline
+\multicolumn{5}{l}{\textbf{Effort multipliers}} \\ \hline
+acap & analyst capability & worst 35\% & 35\% - 90\% & best 10\% \\ \hline
+aexp & applications experience & 2 months & 1 year & 6 years \\ \hline
+cplx & product complexity & \begin{tabular}[c]{@{}l@{}}e.g. simple read/write\\ statements\end{tabular} & \begin{tabular}[c]{@{}l@{}}e.g. use of simple \\interface widgets\end{tabular} & \begin{tabular}[c]{@{}l@{}}e.g. performance-critical \\ embedded systems\end{tabular} \\ \hline
+data & database size,(DB bytes/SLOC) & 10 & 100 & 1000 \\ \hline
+docu & documentation & \begin{tabular}[c]{@{}l@{}}many life-cycle phases \\ not documented\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}extensive reporting for \\each life-cycle phase\end{tabular} \\ \hline
+ltex & language and tool-set experience & 2 months & 1 year & 6 years \\ \hline
+pcap & programmer capability & worst 15\% & 55\% & best 10\% \\ \hline
+pcon & \begin{tabular}[c]{@{}l@{}}personnel continuity \\ (\% turnover per year)\end{tabular} & 48\% & 12\% & 3\% \\ \hline
+plex & platform experience & 2 months & 1 year & 6 years \\ \hline
+pvol & \begin{tabular}[c]{@{}l@{}}platform volatility\\ ($\frac{frequency~of~major~changes}{frequency~of~minor~changes}$)\end{tabular} & $\frac{12~months}{1~month}$ & $\frac{6~months}{2~weeks}$ & $\frac{2~weeks}{2~days}$ \\ \hline
+rely & required reliability & \begin{tabular}[c]{@{}l@{}}errors are slight \\ inconvenience\end{tabular} & \begin{tabular}[c]{@{}l@{}}errors are easily\\ recoverable\end{tabular} & errors can risk human life \\ \hline
+ruse & required reuse & none & multiple program & multiple product lines \\ \hline
+sced & dictated development schedule & \begin{tabular}[c]{@{}l@{}}deadlines moved to 75\% \\of the original estimate\end{tabular} & no change & \begin{tabular}[c]{@{}l@{}}deadlines moved back to, \\160\% of original estimate\end{tabular} \\ \hline
+site & multi-site development & some contact: phone, mail & some email & interactive multi-media \\ \hline
+stor & required\% of available RAM & N/A & 50\% & 95\% \\ \hline
+time & required\% of available CPU & N/A & 50\% & 95\% \\ \hline
+tool & use of software tools & edit, code, debug &  & integrated with life cycle \\ \hline
+\multicolumn{5}{l}{\textbf{Effort}} \\ \hline
+months & construction effort in months & \multicolumn{3}{c}{1 month = 152 hours (includes development \& management hours)} \\ \hline
+\end{tabular}
+\label{tbl:cparems}
+\end{table*}
 
 
 \subsection{COCOMO}
@@ -682,7 +748,7 @@ For example, estimator ``ABEN'' has 6,000+ variants. Given the space to explorat
 In this paper, we apply ROME architecture for exploring hyperparameter optimization and effort estimation. ROME uses the state-of-the-art optimizer (FLASH~\cite{nair2017flash}) to tune regression estimator CART~\cite{brieman84}, for software effort estimation tasks. 
 
 \begin{figure}
-\centerline{\includegraphics[width=1\textwidth]{rome_grey.pdf}}
+\centerline{\includegraphics[width=0.55\textwidth]{rome_grey.pdf}}
 \caption{ROME's architecture}    
 \label{fig:romearc}
 \end{figure}
@@ -703,7 +769,7 @@ It was simple  to ``pop the top'' and replace the optimizing layer with another 
 
 
 \begin{figure}
-\centerline{\includegraphics[width=0.7\textwidth]{flash.pdf}}
+\centerline{\includegraphics[width=0.5\textwidth]{flash.pdf}}
 \caption{Pseudocode of FLASH.}\label{flash}  
 \end{figure}
 
@@ -803,7 +869,7 @@ RQ1 and RQ2 is to investigate how ROME performs compared with other methods on C
 % \end{table}
 
 
-\begin{figure}
+\begin{figure*}
 \centerline{\includegraphics[width=1\textwidth]{nasa10_table.pdf}}
 \caption{\textcolor{black}{ The example of NASA10 dataset (one row per project). For a definition of the terms in row1 (``prec'', ``flex'', ``resl'' etc.) see \tbl{cparems}.
     As to the different columns, scale factors change effort exponentially while effort multipliers have a linear impact on effort.
@@ -811,7 +877,7 @@ RQ1 and RQ2 is to investigate how ROME performs compared with other methods on C
     above and below ``3'' can each effect project effort by a multiple ranging from 0.7 to 1.74.  
     % For full details on how these values are used, see \fig{coc2}.
     }}\label{fig:nasa10}
-\end{figure}
+\end{figure*}
 
 
 
@@ -832,7 +898,7 @@ Those removed features are highlighted as italic in Table~\ref{table:dataset}.
 \begin{table*}[t!]
 
 \renewcommand{\baselinestretch}{0.75} 
-\resizebox{1\textwidth}{!}{
+\resizebox{.8\textwidth}{!}{
 \centering
 \begin{tabular}{cc}
 \scriptsize
@@ -1072,11 +1138,11 @@ that are so bad that they fall outside of the 0\%..100\% range shown here.
 }\label{table_mre_cocomo}
 \centering
 \renewcommand{\baselinestretch}{0.4} 
-\resizebox{0.7\textwidth}{!}{
+\resizebox{0.48\textwidth}{!}{
 {
 \scriptsize
 \noindent
-\begin{tabular}{p{1.5cm}llrc}
+\begin{tabular}{p{.25cm}llrc}
 {\textbf{Rank}} & \textbf{Method} & \textbf{Med.} & \textbf{IQR}\\
  \hline
 
@@ -1152,14 +1218,14 @@ that are so bad that they fall outside of the 0\%..100\% range shown here.
 }\label{table_sa_cocomo}
 \centering
 \renewcommand{\baselinestretch}{0.4} 
-\resizebox{0.7\textwidth}{!}{
+\resizebox{0.48\textwidth}{!}{
 {
 \scriptsize
-\noindent \begin{tabular}{p{1.5cm}llrc}
+\noindent \begin{tabular}{p{.4cm}@{~}l@{~}l@{~}r@{~}c}
 {\textbf{Rank}}& \textbf{Method} & \textbf{Med.} & \textbf{IQR}\\
  \hline
   
-\nm{cocomo10}\\
+ \nm{cocomo10}\\
     1 &      CART\_FLASH &    61 &  16 & \quart{54}{16}{61}{100} \\
     1 &      CART\_DE &    59 &  14 & \quart{54}{14}{59}{100} \\
     1 &      RF &    59 &  16 & \quart{51}{16}{59}{100} \\
@@ -1213,11 +1279,11 @@ that are so bad that they fall outside of the 0\%..100\% range shown here.
 }\label{table_mre_new}
 \centering
 \renewcommand{\baselinestretch}{0.4} 
-\resizebox{0.7\textwidth}{!}{
+\resizebox{0.48\textwidth}{!}{
 {
 \scriptsize
 \noindent
-\begin{tabular}{p{1.5cm}llrc}
+\begin{tabular}{p{.3cm}llrc}
 {\textbf{Rank}} & \textbf{Method} & \textbf{Med.} & \textbf{IQR}\\
  \hline
 
@@ -1303,10 +1369,10 @@ that are so bad that they fall outside of the 0\%..100\% range shown here.
 }\label{table_sa_new}
 \centering
 \renewcommand{\baselinestretch}{0.4} 
-\resizebox{0.7\textwidth}{!}{
+\resizebox{0.48\textwidth}{!}{
 {
 \scriptsize
-\noindent \begin{tabular}{p{1.5cm}llrc}
+\noindent \begin{tabular}{p{.35cm}llrc}
 {\textbf{Rank}}& \textbf{Method} & \textbf{Med.} & \textbf{IQR}\\
  \hline
   
@@ -1506,8 +1572,7 @@ the champion in our experiment is {\it CART\_FLASH}, which ranked as `1' in 17 o
     6 &      ABE0           &    0/18\\
     6 &      SVR            &    0/18\\
     \hline   
- 
- \end{tabular}}
+\end{tabular}}
 \vspace{-10pt}
 \end{wraptable}
 
@@ -1526,9 +1591,9 @@ Cells in this table show the percent of times a particular choice was made. Whit
 }\label{table:para_dist}
 \begin{center}
 %\renewcommand{\baselinestretch}{0.75} 
-\footnotesize
 
-\resizebox{1\linewidth}{!}{ 
+
+\resizebox{.8\linewidth}{!}{ \scriptsize
 \begin{tabular}{ r|c|c|c|c|c|c}
 
 ~ & \%max\_features & max\_depth & min\_sample\_split & min\_samples\_leaf  \\  
@@ -1632,17 +1697,14 @@ For new datasets, try a combination of {\em CART} with the sequential model opti
 
 
 \section{Threats to Validity}\label{sect:threats}
- \textbf{Internal Bias:} Many of  our methods contain stochastic random operators. To reduce the bias from random operators, we 
+
+\textbf{Internal Bias:} Many of  our methods contain stochastic random operators. To reduce the bias from random operators, we 
 repeated our experiment in 20 times and applied statistical tests to remove spurious distinctions.
 
- \textbf{Parameter Bias:} For other studies, this is a significant question
- since (as shown above) the settings to the control parameters of the learners
- can have a positive effect on the efficacy of the estimation.
- That said, 
- recall that much of the technology of this paper concerned methods to explore
- the space of possible parameters.
- Hence we assert that 
- this study suffers much less parameter bias than other studies.
+\textbf{Parameter Bias:} For other studies, this is a significant question
+since (as shown above) the settings to the control parameters of the learners
+can have a positive effect on the efficacy of the estimation.
+That said, recall that much of the technology of this paper concerned methods to explore the space of possible parameters. Hence we assert that this study suffers much less parameter bias than other studies.
  
 %  DE plays an important role in ROME, in this paper, we did not discuss the influence of different DE
 % parameters, such as $cr$, $np$, $f$. In this paper, we followed Storn {\it et al.}'s configurations~\cite{storn1997differential}. Clearly, tuning such parameters is a direction for  future work.
@@ -1694,9 +1756,9 @@ more research on better methods to tune software effort
 estimators.
 To that end, we have placed our scripts and data online at https://github.com/arennax/effort\_rome\_2019
 
-\section*{Acknowledgement}
-This work was partially funded by a National Science Foundation
-Award 1703487.
+% \section*{Acknowledgement}
+% This work was partially funded by a National Science Foundation
+% Award 1703487.
 
 
 % \bibliographystyle{spphys}
