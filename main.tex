@@ -1,69 +1,14 @@
-\documentclass[sigconf,twocolumn,review]{acmart} 
-\bibliographystyle{ACM-Reference-Format}
-%\pdfoutput=1
-%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is a general template file for the LaTeX package SVJour3
-% for Springer journals.          Springer Heidelberg 2010/09/16
-%
-% Copy it to a new file with a new name and use it as the basis
-% for your article. Delete % signs as needed.
-%
-% This template includes a few options for different layouts and
-% content for various journals. Please consult a previous issue of
-% your journal as needed.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% First comes an example EPS file -- just ignore it and
-% proceed on the \documentclass line
-% your LaTeX will extract the file if required
-
-
-% \begin{filecontents*}{example.eps}
-% %!PS-Adobe-3.0 EPSF-3.0
-% %%BoundingBox: 19 19 221 221
-% %%CreationDate: Mon Sep 29 1997
-% %%Creator: programmed by hand (JK)
-% %%EndComments
-% gsave
-% github
-%   20 20 moveto
-%   20 220 lineto
-%   220 220 lineto
-%   220 20 lineto
-% closepath
-% 2 setlinewidth
-% gsave
-%   .4 setgray fill
-% grestore
-% stroke
-% grestore
-% \end{filecontents*}
-
-
-%
-\RequirePackage{fix-cm}
-%
-%\documentclass{svjour3}                     % onecolumn (standard format)
-%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-\documentclass[smallextended]{svjour3}       % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}          % twocolumn
-%
-\smartqed  % flush right qed marks, e.g. at end of proof
-%
+\documentclass[sigconf,review]{acmart}
 \usepackage{graphicx}
-
+\graphicspath{{images/}}
 \usepackage{amsmath}
 \usepackage{rotate}
+\usepackage{listings}
+\usepackage{pythonhighlight}
 \usepackage{colortbl}
 \usepackage{arydshln}
 \usepackage{times}
-
-\usepackage[dvipsnames]{xcolor}
-\usepackage{rotating}
-\usepackage{makecell} 
-\usepackage{tabularx}
+\usepackage{xcolor}
 \usepackage{balance}
 \usepackage{booktabs}
 \usepackage{wrapfig}
@@ -72,38 +17,26 @@
 \usepackage{makecell}
 \usepackage{tabu}
 \usepackage{multirow}
-\usepackage{listings}
-
-\usepackage[numbers]{natbib}
-\usepackage{bchart}
-
-
-\newcommand{\bi}{\begin{itemize}}
-\newcommand{\ei}{\end{itemize}}
-\newcommand{\be}{\begin{enumerate}}
-\newcommand{\ee}{\end{enumerate}}
-
-\newcommand{\tbl}[1]{Table~\ref{tbl:#1}}
-\newcommand{\fig}[1]{Figure~\ref{fig:#1}}
-\newcommand{\eq}[1]{Equation~\ref{eq:#1}}
-\newcommand{\tion}[1]{\S\ref{sect:#1}}
-
-\usepackage[table,xcdraw]{xcolor}
-
-%  \usepackage[usenames]{color}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{rotating}
 \usepackage{url}
-%%% graph
+\usepackage{color}
+
+\usepackage{minted}
+
+\newminted{python}{fontsize=\small, 
+                   numbersep=0pt,
+                   gobble=4,
+                   frame=lines,
+                   bgcolor=black!0,
+                   framesep=1mm} 
 
 \newcommand{\crule}[3][darkgray]{\textcolor{#1}{\rule{#2}{#3}}}
-
 \newcommand{\dbox}[1] { \crule[black!#1]{0.67cm}{0.4cm} 
 \hspace{-0.51cm}\scalebox{1}[1.0]{{\textcolor{black}{{\bf $^{#1}$}}}\hspace{0.1mm}}}
-
-
 \newcommand{\wbox}[1] { \crule[black!#1]{0.67cm}{0.4cm} 
 \hspace{-0.51cm}\scalebox{1}[1.0]{{\textcolor{white}{{\bf $^{#1}$}}}\hspace{0.1mm}}}
-
-
 \newcommand{\quart}[4]{
 \begin{picture}(100,6)%1
     {
@@ -115,11 +48,17 @@
     }
 \end{picture}
 }
-
 \newcommand{\ofr} {
 {\textit{out-of-range}}
 }
-
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\tbl}[1]{Table~\ref{tbl:#1}}
+\newcommand{\fig}[1]{Figure~\ref{fig:#1}}
+\newcommand{\eq}[1]{Equation~\ref{eq:#1}}
+\newcommand{\tion}[1]{\S\ref{sect:#1}}
 \usepackage[framemethod=tikz]{mdframed}
 \usetikzlibrary{shadows}
 \usepackage{graphics}
@@ -159,69 +98,101 @@ shadow=false
 }
 
 
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
 
+\setcopyright{acmcopyright}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{10.1145/1122445.1122456}
 
-%\pdfoutput=1
-%
-% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
-%
-% insert here the call for the packages your document requires
-%\usepackage{latexsym}
-% etc.
-%
-% please place your own definitions here and don't use \def but
-% \newcommand{}{}
-%
-% Insert the name of "your journal" with
-% \journalname{myjournal}
-%
+\acmConference[ICSE 2020]{42th International Conference on Software Engineering}{May 23-29, 2020}{Seoul, South Korea}
+\acmBooktitle{42th International Conference on Software Engineering, May 23-29, 2020, Seoul, South Korea}
+\acmPrice{15.00}
+\acmISBN{978-1-4503-9999-9/18/06}
+
 \begin{document}
-\pagestyle{plain}
+\title{Reversing Prior Negative Results about Effort Estimation}
 
-\title{Reversing Prior Negative Results about Effort Estimation
-}
-% \subtitle{Do you have a subtitle?\\ If so, write it here}
+\author{Tianpei Xia}
+\affiliation{%
+  \institution{North Carolina State University}
+  \city{Raleigh}
+  \country{United States}}
+\email{txia4@ncsu.edu}
 
-%\titlerunning{Short form of title}        % if too long for running head
+\author{Rui Shu}
+\affiliation{%
+  \institution{North Carolina State University}
+  \city{Raleigh}
+  \country{United States}}
+\email{rshu@ncsu.edu}
 
+\author{Tim Menzies}
+\affiliation{%
+  \institution{North Carolina State University}
+  \city{Raleigh}
+  \country{United States}}
+\email{timm@ieee.org}
 
-% \newcommand{\RED}{\color{red}}
-% \newcommand{\BLACK}{\color{black}}
-
-
-% \author{Tianpei Xia         \and
-%         Tim Menzies         
-% }
-
-% %\authorrunning{Short form of author list} % if too long for running head
-
-% \institute{Tianpei Xia,
-% Tim Menzies\at
-%               Department of Computer Science, North Carolina State University, Raleigh, NC, USA \\
-%               Email: txia4@ncsu.edu,  timm@ieee.org 
-% }
-
-% \date{the date of receipt and acceptance should be inserted later}
-% % The correct dates will be entered by the editor
+\renewcommand{\shortauthors}{Xia et al.}
+\renewcommand{\textrightarrow}{$\rightarrow$}
 
 
-% \maketitle
-
-
-
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
 \begin{abstract}
 Software effort estimation researchers keep proposing new approaches and  demonstrating the improvements of their proposed methods by comparing with supposedly state-of-the-art baseline methods. However, very few studies compared with approaches that are classic yet simple, on different type of projects (e.g. Waterfall, Agile). As Menzies et al. mentioned~\cite{MenziesNeg:2017}, with specific attributes, old methods (e.g. COCOMO-II) can achieve better, if not the best, performance results. Therefore, for any newly proposed software estimation method, it is necessary to check if it has better estimates than older ones.
  
 In this paper, we propose a software estimation framework ``ROME'' (Rapid Optimizing Methods for Estimation), which is to supercharge effort estimation with hyperparameter tuning techniques. Specifically, orthogonal to other methods for software effort estimation, we applied the regression trees (CART) tuned by a sequential model optimizer named ``FLASH''. To make compatible comparison on both newly agile projects and traditional waterfall style ones, we validate the effectiveness of our method on the recent collected effort dataset from GitHub, as well as old COCOMO-style dataset. Experimental results show that ROME achieves better performance (in terms of magnitude of relative error and standardized accuracy) than COCOMO-II on COCOMO-Style dataset, and outperform other state-of-the-art estimators on other datasets. 
 
 We offer this ``ROME'' framework as a comprehensive baseline method to software effort estimation community for both old waterfall style projects and new agile datasets. The results from this paper suggest that future effort estimation methods should be combined with fast and easy optimization techniques, and works on projects from different era.
-
-
-% to tune software effort estimators.
-\keywords{Effort Estimation \and COCOMO \and Hyperparameter Tuning \and Regression Trees \and Sequential Model Optimization}
-% \PACS{PACS code1 \and PACS code2 \and more}
-% \subclass{MSC code1 \and MSC code2 \and more}
 \end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010520.10010553.10010562</concept_id>
+  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010575.10010755</concept_id>
+  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010553.10010554</concept_id>
+  <concept_desc>Computer systems organization~Robotics</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10003033.10003083.10003095</concept_id>
+  <concept_desc>Networks~Network reliability</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computer systems organization~Embedded systems}
+\ccsdesc[300]{Computer systems organization~Redundancy}
+\ccsdesc{Computer systems organization~Robotics}
+\ccsdesc[100]{Networks~Network reliability}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Effort Estimation, COCOMO, Hyperparameter Tuning, Regression Trees, Sequential Model Optimization}
+
+
+\settopmatter{printfolios=true}
+\maketitle
 
 \section{Introduction}
 \label{intro}
@@ -478,49 +449,12 @@ Algorithm-based effort estimation methods have been widely explored in the past 
 % \end{figure}
 
 
-% \begin{table*}
-% \centerline{\includegraphics[width=.7\textwidth]{cocomo_para.pdf}}
-% \caption{COCOMO-II attributes.}
-% \label{tbl:cparems}
-% \vspace{-0.6cm}
-% \end{table*}
-
-\begin{table*}[!htbp]
-\centering
+\begin{table*}
 \caption{COCOMO-II attributes.}
-\begin{tabular}{c|l|l|l|l}
-\hline
-\rowcolor[HTML]{EFEFEF} 
- & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Definition}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Low End \{1, 2\}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Medium \{3, 4\}}} & \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}\textbf{High End \{5, 6\}}} \\ \hline
-\multicolumn{5}{l}{\textbf{Scale factors}} \\ \hline
-flex & development flexibility & \begin{tabular}[c]{@{}l@{}}development process\\ rigorously defined\end{tabular} & \begin{tabular}[c]{@{}l@{}}some guidelines, which\\ can be relaxed\end{tabular} & only general goals defined \\ \hline
-pmat & process maturity & CMM level 1 & CMM level 3 & CMM level 5 \\ \hline
-prec & precedentedness & \begin{tabular}[c]{@{}l@{}}we have never built this \\ kind of software before\end{tabular} & somewhat new & thoroughly familiar \\ \hline
-resl & architecture or risk resolution & \begin{tabular}[c]{@{}l@{}}few interfaces defined \\ or few risks eliminated\end{tabular} & \begin{tabular}[c]{@{}l@{}}most interfaces defined \\ or most risks eliminated\end{tabular} & \begin{tabular}[c]{@{}l@{}}all interfaces defined or all \\ risks eliminated\end{tabular} \\ \hline
-team & team cohesion & very difficult interactions & basically co-operative & seamless interactions \\ \hline
-\multicolumn{5}{l}{\textbf{Effort multipliers}} \\ \hline
-acap & analyst capability & worst 35\% & 35\% - 90\% & best 10\% \\ \hline
-aexp & applications experience & 2 months & 1 year & 6 years \\ \hline
-cplx & product complexity & \begin{tabular}[c]{@{}l@{}}e.g. simple read/write\\ statements\end{tabular} & \begin{tabular}[c]{@{}l@{}}e.g. use of simple \\interface widgets\end{tabular} & \begin{tabular}[c]{@{}l@{}}e.g. performance-critical \\ embedded systems\end{tabular} \\ \hline
-data & database size,(DB bytes/SLOC) & 10 & 100 & 1000 \\ \hline
-docu & documentation & \begin{tabular}[c]{@{}l@{}}many life-cycle phases \\ not documented\end{tabular} &  & \begin{tabular}[c]{@{}l@{}}extensive reporting for \\each life-cycle phase\end{tabular} \\ \hline
-ltex & language and tool-set experience & 2 months & 1 year & 6 years \\ \hline
-pcap & programmer capability & worst 15\% & 55\% & best 10\% \\ \hline
-pcon & \begin{tabular}[c]{@{}l@{}}personnel continuity \\ (\% turnover per year)\end{tabular} & 48\% & 12\% & 3\% \\ \hline
-plex & platform experience & 2 months & 1 year & 6 years \\ \hline
-pvol & \begin{tabular}[c]{@{}l@{}}platform volatility\\ ($\frac{frequency~of~major~changes}{frequency~of~minor~changes}$)\end{tabular} & $\frac{12~months}{1~month}$ & $\frac{6~months}{2~weeks}$ & $\frac{2~weeks}{2~days}$ \\ \hline
-rely & required reliability & \begin{tabular}[c]{@{}l@{}}errors are slight \\ inconvenience\end{tabular} & \begin{tabular}[c]{@{}l@{}}errors are easily\\ recoverable\end{tabular} & errors can risk human life \\ \hline
-ruse & required reuse & none & multiple program & multiple product lines \\ \hline
-sced & dictated development schedule & \begin{tabular}[c]{@{}l@{}}deadlines moved to 75\% \\of the original estimate\end{tabular} & no change & \begin{tabular}[c]{@{}l@{}}deadlines moved back to, \\160\% of original estimate\end{tabular} \\ \hline
-site & multi-site development & some contact: phone, mail & some email & interactive multi-media \\ \hline
-stor & required\% of available RAM & N/A & 50\% & 95\% \\ \hline
-time & required\% of available CPU & N/A & 50\% & 95\% \\ \hline
-tool & use of software tools & edit, code, debug &  & integrated with life cycle \\ \hline
-\multicolumn{5}{l}{\textbf{Effort}} \\ \hline
-months & construction effort in months & \multicolumn{3}{c}{1 month = 152 hours (includes development \& management hours)} \\ \hline
-\end{tabular}
 \label{tbl:cparems}
+\centerline{\includegraphics[width=.7\textwidth]{cocomo_para.pdf}}
 \end{table*}
+
 
 
 \subsection{COCOMO}
@@ -684,12 +618,12 @@ For more details on the CART parameters, see Table~\ref{tbl:cart}.
 \centering
 \caption{CART's parameters.}\label{tbl:cart}
 \begin{tabular}{l|c|c|c|p{1.6in}}
-\hline \rowcolor{Black!30}
+\hline \rowcolor{black!30}
 Parameter  &Type        & Default & Tuning Range  & Description     \\\hline
 max\_feature & numerical      & None    & {[}0.01, 1{]} &Number of features to consider when looking for the best spilt. \\
-\rowcolor{Black!15} max\_depth  &numerical       & None    & {[}1, 12{]}   & The maximum depth of the decision tree.                                     \\
+\rowcolor{black!15} max\_depth  &numerical       & None    & {[}1, 12{]}   & The maximum depth of the decision tree.                                     \\
 min\_sample\_split & numerical & 2       & {[}0, 20{]}   & Minimum   samples required to split  internal nodes.  \\
-\rowcolor{Black!15} min\_samples\_leaf & numerical& 1       & {[}1, 12{]}   &   Minimum   samples required to be at a leaf node.    \\\hline
+\rowcolor{black!15} min\_samples\_leaf & numerical& 1       & {[}1, 12{]}   &   Minimum   samples required to be at a leaf node.    \\\hline
 
 \end{tabular}
 \end{table*}
@@ -715,8 +649,7 @@ Before calculating similarity,  ABE normalizes   numerics  min..max to 0..1 (so 
 Then, ABE uses {\em feature} weighting to reduce the influence of less informative {\em features}.
 Finally, some  {\em adaption strategy} is applied  return a combination of  the dependent effort values seen in  the $k$ nearest analogies. 
 
-\subsection{Hyperparameter Optimization}
-\label{sec:tuning}
+\subsection{Hyperparameter Optimization} \label{sec:tuning}
 
 
 % \begin{figure}
@@ -767,9 +700,20 @@ Inside the ROME's architecture, we have a learning layer and a optimizing layer.
 
 It was simple  to ``pop the top'' and replace the optimizing layer with another optimizer. In this layer, ROME used FLASH~\cite{nair2017flash} as the optimizer.
 
-
 \begin{figure}
-\centerline{\includegraphics[width=0.5\textwidth]{flash.pdf}}
+\begin{pythoncode}
+    # Pick a number of data into build_pool, 
+    # evaluate the build_pool, 
+    # and put the rest into rest_pool
+    while life > 0:
+      build CART model by using build_pool
+      next_point = max(model.predict(rest_pool))
+      build_pool += next_point
+      rest_pool -= next_point
+      if model.evaluate(next_point) < max(build_pool):
+          life -= 1
+    return max(build_pool)
+\end{pythoncode}
 \caption{Pseudocode of FLASH.}\label{flash}  
 \end{figure}
 
@@ -896,7 +840,6 @@ Those removed features are highlighted as italic in Table~\ref{table:dataset}.
 \newcommand{\IT}[1]{\textcolor{red}{{\em #1}}}
 \pdfoutput=1
 \begin{table*}[t!]
-
 \renewcommand{\baselinestretch}{0.75} 
 \resizebox{.8\textwidth}{!}{
 \centering
@@ -905,7 +848,7 @@ Those removed features are highlighted as italic in Table~\ref{table:dataset}.
 \begin{tabular}{|c|l|rrrr|}
     \hline
       & feature & min  & max & mean & std\\
-   \hline
+  \hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \multirow{7}{*}{\begin{sideways}java\_init\end{sideways}}
@@ -949,7 +892,7 @@ Those removed features are highlighted as italic in Table~\ref{table:dataset}.
     \hline
       & feature
     & min  & max & mean & std\\
-   \hline
+  \hline
 \multirow{7}{*}{\begin{sideways}webshop\_init\end{sideways}}
 & \IT{LOC} & 5 & 31 & 14.3 & 7.5\\
 & EI & 39 & 450 & 186.6 & 136.8\\
@@ -981,7 +924,6 @@ Those removed features are highlighted as italic in Table~\ref{table:dataset}.
 & Effort & 23 & 1107 & 219.2 & 263.1\\
 \hline
 \end{tabular} 
-
 \end{tabular}
 }
 \caption{Descriptive Statistics of the Datasets. EI and EO are the elementary process that processes data or control information sent from/to outside the boundary. Files are user recognizable groups of logically related data or control information maintained within the boundary, APEX and LPEX are Application and Language/Tool experience. AFP and LOC are Automated function point and Line of code. Terms in \IT{red} are removed from this study, for reasons discussed in the text.}\label{table:dataset}
@@ -1554,8 +1496,7 @@ and Table~\ref{table_sa_new}. Note that
 the champion in our experiment is {\it CART\_FLASH}, which ranked as `1' in 17 out of all 18 cases. The second and third methods {\it CART\_DE} and {\it LP4EE} has similar performance (9/18 and 8/18, respectively), but neither of these two cannot achieve best performance result than half of the cases.
 
 
-\begin{wraptable}{r}{2.3in}
-\vspace{-15pt}
+\begin{table}
 \small
  \caption{Methods ranking of total winning times ({\em Rank=1}), in all 18 experiment cases (3 COCOMO-Style datasets and 6 open source datasets for both MRE and SA).}\label{tbl:methodsrk}
 \centering
@@ -1573,8 +1514,7 @@ the champion in our experiment is {\it CART\_FLASH}, which ranked as `1' in 17 o
     6 &      SVR            &    0/18\\
     \hline   
 \end{tabular}}
-\vspace{-10pt}
-\end{wraptable}
+\end{table}
 
 
 Beside the three top methods, the rest estimators could hardly win in even one single case. Hence, we cannot endorse their use for generating estimates to be shown to business managers.
@@ -1690,7 +1630,6 @@ This finding is quite aligned with Fu et al.~\cite{Fu2016TuningFS}, where for so
 Since there are no ``best'' default settings for all, based on the results of  Table~\ref{tbl:methodsrk}, 
 for similar effort estimation tasks, we recommend:
 
-\BLACK  
 \begin{result}{3}
 For new datasets, try a combination of {\em CART} with the sequential model optimizer named {\em FLASH}.
  \end{result}
@@ -1744,10 +1683,10 @@ plans for future work include the following:
 
 \bi
 \item Try other learners:
-e.g. neural nets, bayesian learners or gradient boosting tree;
+e.g. neural nets, Bayesian learners or gradient boosting tree;
 \item Other optimizers. For example,
 applying ``DODGE'' from recent Agrawal et al.'s research~\cite{agrawal2019dodge} might be a fruitful way to proceed;
-\item Try to collect more open source effort datasets to validate and improve the current approach. For example, continue to look for useful effort infomation on GitHub repositry could provide a massive amount of new data.
+\item Try to collect more open source effort datasets to validate and improve the current approach. For example, continue to look for useful effort information on GitHub repository could provide a massive amount of new data.
 \ei
 Open source projects have became more and more popular. From the Internet, we can acquire a considerable quantities of open source projects. As the biggest online repository hosting service, GitHub has thousands of accessible software projects. By using the provided APIs, we could obtain the active information of the source codes, then try to extract and translate those information into cost metrics, and generate GitHub effort datasets for further research.
 
@@ -1756,18 +1695,9 @@ more research on better methods to tune software effort
 estimators.
 To that end, we have placed our scripts and data online at https://github.com/arennax/effort\_rome\_2019
 
-% \section*{Acknowledgement}
-% This work was partially funded by a National Science Foundation
-% Award 1703487.
-
-
-% \bibliographystyle{spphys}
-\bibliographystyle{spbasic}
-% \bibliographystyle{IEEEtran}
-% \bibliography{sigproc} 
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{reference}
 
-
-
 \end{document}
+\endinput
 
